@@ -21,6 +21,10 @@ Route::get('posts', function () {
 	return App\Post::all();
 });
 
-Route::get('admin', function () {
+Route::get('home', function () {
 	return view('admin.dashboard');
-});
+})->middleware('auth');
+
+Auth::routes([
+	'register' => false,
+]);
