@@ -18,11 +18,9 @@ Route::group([
     'namespace' => 'Admin',
     'middleware' => 'auth',
 ], function () {
+    Route::get('/', 'AdminController@index')->name('dashboard');
     Route::get('posts', 'PostsController@index')->name('admin.posts.index');
 });
-
-Route::get('home', 'HomeController@index');
-
 
 Auth::routes([
 	'register' => false,
