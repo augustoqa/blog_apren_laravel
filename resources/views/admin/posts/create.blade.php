@@ -33,7 +33,8 @@
 @endsection
 
 @section('content')
-    <form action="">
+    <form method="post" action="{{ route('admin.posts.store') }}">
+        @csrf
         <div class="row">
             <div class="col-md-8">
                 <div class="card card-secondary">
@@ -67,8 +68,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="categoria">Categoría</label>
-                                <select name="categoria" id="categoria" class="form-control">
+                                <label for="category">Categoría</label>
+                                <select name="category" id="category" class="form-control">
                                     <option value="">Seleciona una categoría</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -76,10 +77,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Etiquetas</label>
+                                <label id="tags">Selecciona las etiquetas</label>
                                 <select
+                                    name="tags[]"
                                     class="select2"
-                                    multiple="multiple"
+                                    id="tags"
+                                    multiple
                                     data-placeholder="Selecciona una o más etiquetas"
                                     style="width: 100%;">
                                     @foreach($tags as $tag)
