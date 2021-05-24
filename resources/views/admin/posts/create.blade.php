@@ -53,14 +53,54 @@
 				<div class="card">
 					<div class="card-secondary">
 						<div class="card-body">
+                            <div class="form-group">
+                                <label>Fecha de pulicación:</label>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    <input type="text" name="published_at" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoria">Categoría</label>
+                                <select name="categoria" id="categoria" class="form-control">
+                                    <option value="">Seleciona una categoría</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 	    					<div class="form-group">
 								<label for="">Extracto publicación</label>
 								<textarea name="excerpt" class="form-control" placeholder="Ingrese un extracto de la publicación"></textarea>
-							</div>							
+							</div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Guardar Publicación</button>
+                            </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>				
+	</form>
 @endsection
+
+@push('styles')
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+@endpush
+
+@push('scripts')
+    <!-- InputMask -->
+    <script src="/adminlte/plugins/moment/moment.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <script>
+        $('#reservationdate').datetimepicker({
+            format: 'L'
+        });
+    </script>
+@endpush
+
