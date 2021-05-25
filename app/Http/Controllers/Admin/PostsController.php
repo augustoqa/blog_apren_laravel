@@ -28,15 +28,23 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'category' => 'required',
+            'excerpt' => 'required',
+            'tags' => 'required'
+        ]);
+
         $post = new Post;
         $post->title = $request->get('title');
         $post->body = $request->get('body');
         $post->excerpt = $request->get('excerpt');
-        $post->published_at = Carbon::parse($request->get('published_at'));
+        $post->published_at = $request->get('published_at') ? Carbon::parse($request->get('published_at')) : null;
         $post->category_id = $request->get('category');
         $post->save();
 
-        //etiquetas 
+        //etiquetas
         $post->tags()->attach($request->get('tags'));
 
         return back()->with('flash', 'Tu publicación ha sido creada');

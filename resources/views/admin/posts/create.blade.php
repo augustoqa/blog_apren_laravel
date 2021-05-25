@@ -41,13 +41,29 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Título de la publicación</label>
-                            <input type="text" name="title" class="form-control"
-                                   placeholder="Ingrese aquí el título de la publicación">
+                            <input 
+                                type="text" 
+                                name="title" 
+                                value="{{ old('title') }}" 
+                                class="form-control @error('title') is-invalid @enderror"
+                                placeholder="Ingrese aquí el título de la publicación">
+
+                            @error('title')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Contenido publicación</label>
-                            <textarea name="body" id="editor" class="form-control" rows="10"
-                                      placeholder="Ingrese contenido de la publicación"></textarea>
+                            <label for="editor">Contenido publicación</label>
+                            <textarea 
+                                name="body" 
+                                id="editor" 
+                                class="form-control @error('title') is-invalid @enderror" 
+                                rows="10"
+                                placeholder="Ingrese contenido de la publicación"
+                            >{{ old('body') }}</textarea>
+                            @error('body')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -59,8 +75,12 @@
                             <div class="form-group">
                                 <label>Fecha de pulicación:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" name="published_at" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"/>
+                                    <input 
+                                        type="text" 
+                                        name="published_at" 
+                                        value="{{ old('published_at') }}" 
+                                        class="form-control datetimepicker-input"
+                                        data-target="#reservationdate"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -69,31 +89,58 @@
                             </div>
                             <div class="form-group">
                                 <label for="category">Categoría</label>
-                                <select name="category" id="category" class="form-control">
+                                <select 
+                                    name="category" 
+                                    id="category" 
+                                    class="form-control @error('category') is-invalid @enderror"
+                                >
                                     <option value="">Seleciona una categoría</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option 
+                                            value="{{ $category->id }}"
+                                            {{ old('category') == $category->id ? 'selected' : '' }}
+                                        >
+                                            {{ $category->name }}
+                                        </option>
                                     @endforeach
                                 </select>
+                                @error('category')
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label id="tags">Selecciona las etiquetas</label>
                                 <select
                                     name="tags[]"
-                                    class="select2"
+                                    class="select2 @error('tags') is-invalid @enderror"
                                     id="tags"
                                     multiple
                                     data-placeholder="Selecciona una o más etiquetas"
                                     style="width: 100%;">
                                     @foreach($tags as $tag)
-                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        <option 
+                                            value="{{ $tag->id }}"
+                                            {{ collect(old('tags'))->contains($tag->id) ? 'selected' : '' }}
+                                        >
+                                            {{ $tag->name }}
+                                        </option>
                                     @endforeach
                                 </select>
+                                @error('tags')
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Extracto publicación</label>
-                                <textarea name="excerpt" class="form-control"
-                                          placeholder="Ingrese un extracto de la publicación"></textarea>
+                                <label for="excerpt">Extracto publicación</label>
+                                <textarea 
+                                    name="excerpt" 
+                                    id="excerpt" 
+                                    class="form-control @error('excerpt') is-invalid @enderror"
+                                    placeholder="Ingrese un extracto de la publicación"
+                                >{{ old('excerpt') }}</textarea>
+                                @error('excerpt')
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Guardar Publicación</button>
