@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0">Todas las publicaciones</h1>
+            <h1 class="m-0">POSTS <small>Listado</small></h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,35 +25,46 @@
 @endsection
 
 @section('content')
-<h1>Dashboard</h1>
 
-<!-- /.card-header -->
-<div class="card-body">
-    <table id="posts-table" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Extracto</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($posts as $post)
-            <tr>
-                <td>{{ $post->id }}</td>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->excerpt }}</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+<div class="card">
+    <div class="card-header">
+        <h3 class="float-left">Listado de publicaciones</h3>
+        <button 
+            class="btn btn-primary float-right"
+            data-toggle="modal" data-target="#exampleModal"
+        >
+            <i class="fas fa-plus"></i>
+            Crear publicación
+        </button>
+    </div>
+    <div class="card-body">
+        <table id="posts-table" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Extracto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($posts as $post)
+                <tr>
+                    <td>{{ $post->id }}</td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->excerpt }}</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 </div>
+
 @endsection
 
 @push('styles')
@@ -91,4 +102,40 @@
             });
         });
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="post" action="{{ route('admin.posts.store') }}">
+            @csrf
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar el título de tu nueva publicación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{-- <label for="">Título de la publicación</label> --}}
+                            <input 
+                                type="text" 
+                                name="title" 
+                                value="{{ old('title') }}" 
+                                class="form-control @error('title') is-invalid @enderror"
+                                placeholder="Ingrese aquí el título de la publicación">
+
+                            @error('title')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary">Crear publicación</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 @endpush
