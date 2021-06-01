@@ -15,6 +15,7 @@
                         <input 
                         type="text" 
                         name="title" 
+                        id="title"
                         value="{{ old('title') }}" 
                         class="form-control @error('title') is-invalid @enderror"
                         placeholder="Ingrese aquí el título de la publicación">

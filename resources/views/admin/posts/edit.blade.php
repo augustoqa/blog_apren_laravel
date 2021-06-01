@@ -143,6 +143,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <div class="dropzone"></div>
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Guardar Publicación</button>
                             </div>
                         </div>
@@ -154,6 +157,9 @@
 @endsection
 
 @push('styles')
+    <!-- Dropzone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css">
+
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 
@@ -166,6 +172,9 @@
 @endpush
 
 @push('scripts')
+    <!-- Dropzone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.js"></script>
+
     <!-- InputMask -->
     <script src="/adminlte/plugins/moment/moment.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
@@ -192,6 +201,16 @@
 
         //Initialize Select2 Elements
         $('.select2').select2()
+
+        new Dropzone('.dropzone', {
+            url: '/admin/posts/{{ $post->url }}/photos',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            dictDefaultMessage: 'Arrastrar las fotos aquí para subirlas'
+        })
+
+        Dropzone.autoDiscover = false
     </script>
 @endpush
 

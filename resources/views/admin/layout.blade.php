@@ -264,6 +264,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('/adminlte/js/adminlte.min.js') }}"></script>
 
     @include('admin.posts.create')
+
+    @error('title')
+    <script>
+        $('#exampleModal').modal('show')
+        $('#exampleModal').on('shown.bs.modal', function () {
+            $('#title').trigger('focus')
+        })
+    </script>
+    @enderror
 </body>
 
 </html>
