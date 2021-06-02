@@ -202,12 +202,20 @@
         //Initialize Select2 Elements
         $('.select2').select2()
 
-        new Dropzone('.dropzone', {
+        const myDropzone = new Dropzone('.dropzone', {
             url: '/admin/posts/{{ $post->url }}/photos',
+            acceptedFiles: 'image/*',
+            maxFilesize: 2,
+            paramName: 'photo',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
             dictDefaultMessage: 'Arrastrar las fotos aquí para subirlas'
+        })
+
+        myDropzone.on('error', function (file, res) {
+            const msg = res.errors.photo[0]
+            $('.dz-error-message:last > span').text(msg)
         })
 
         Dropzone.autoDiscover = false
