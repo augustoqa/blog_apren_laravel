@@ -33,6 +33,27 @@
 @endsection
 
 @section('content')
+    @if ($post->photos->count())
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-around">
+                    @foreach ($post->photos as $photo) 
+                    <div class="position-relative">
+                        <form action="{{ route('admin.photos.destroy', $photo) }}" method="post">
+                            @method('DELETE') @csrf
+                            <button class="btn btn-danger btn-xs position-absolute" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <img src="{{ url($photo->url) }}" class="p-2" width="150" height="90">
+                        </form>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
     <form method="post" action="{{ route('admin.posts.update', $post) }}">
         @csrf {{ method_field('PUT') }}
         <div class="row">
@@ -195,7 +216,7 @@
         $(function () {
             // Summernote
             $('#editor').summernote({
-                height: 250
+                height: 370
             })
         })
 
