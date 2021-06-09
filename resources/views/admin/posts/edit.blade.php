@@ -86,6 +86,19 @@
                             <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
+                         <div class="form-group">
+                            <label for="editor">Contenido embebido (iframe)</label>
+                            <textarea 
+                                name="iframe" 
+                                id="editor" 
+                                class="form-control @error('title') is-invalid @enderror" 
+                                rows="2"
+                                placeholder="Ingresa contenido enbebido (iframe) de audio o video"
+                            >{{ old('iframe', $post->iframe) }}</textarea>
+                            @error('iframe')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
