@@ -126,7 +126,7 @@
                                 <select 
                                     name="category" 
                                     id="category" 
-                                    class="form-control @error('category') is-invalid @enderror"
+                                    class="form-control select2 @error('category') is-invalid @enderror"
                                 >
                                     <option value="">Seleciona una categoría</option>
                                     @foreach($categories as $category)
@@ -234,7 +234,9 @@
         })
 
         //Initialize Select2 Elements
-        $('.select2').select2()
+        $('.select2').select2({
+            tags: true
+        })
 
         const myDropzone = new Dropzone('.dropzone', {
             url: '/admin/posts/{{ $post->url }}/photos',
