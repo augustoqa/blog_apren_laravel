@@ -124,21 +124,21 @@
                             <div class="form-group">
                                 <label for="category">Categoría</label>
                                 <select 
-                                    name="category" 
+                                    name="category_id" 
                                     id="category" 
-                                    class="form-control select2 @error('category') is-invalid @enderror"
+                                    class="form-control select2 @error('category_id') is-invalid @enderror"
                                 >
                                     <option value="">Seleciona una categoría</option>
                                     @foreach($categories as $category)
                                         <option 
                                             value="{{ $category->id }}"
-                                            {{ old('category', $post->category_id) == $category->id ? 'selected' : '' }}
+                                            {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
                                         >
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('category')
+                                @error('category_id')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
