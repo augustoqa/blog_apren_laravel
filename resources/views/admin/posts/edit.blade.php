@@ -45,7 +45,7 @@
                             <button class="btn btn-danger btn-xs position-absolute" title="Eliminar">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
-                            <img src="{{ url($photo->url) }}" class="p-2" width="150" height="90">
+                            <img src="{{ Storage::url($photo->url) }}" class="p-2" width="150" height="90">
                         </form>
                     </div>
                     @endforeach
