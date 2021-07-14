@@ -8,9 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id', 
+        'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id',
     ];
     protected $dates = ['published_at'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($post) {
+            $post->tags()->detach();
+            $post->photos->each->delete();
+        });
+    }
 
     public function getRouteKeyName()
     {
@@ -52,7 +62,7 @@ class Post extends Model
 
     public function setCategoryIdAttribute($category)
     {
-        $this->attributes['category_id'] = 
+        $this->attributes['category_id'] =
             Category::find($category)
                 ? $category
                 : Category::create(['name' => $category])->id;

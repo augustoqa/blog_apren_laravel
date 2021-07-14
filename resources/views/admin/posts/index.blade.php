@@ -29,7 +29,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="float-left">Listado de publicaciones</h3>
-        <button 
+        <button
             class="btn btn-primary float-right"
             data-toggle="modal" data-target="#exampleModal"
         >
@@ -54,15 +54,29 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->excerpt }}</td>
                     <td>
-                        <a 
-                            href="{{ route('posts.show', $post) }}" 
-                            class="btn btn-sm btn-default" 
+                        <a
+                            href="{{ route('posts.show', $post) }}"
+                            class="btn btn-sm btn-default"
                             target="_blank"
                         >
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                        <form
+                            method="POST"
+                            action="{{ route('admin.posts.destroy', $post) }}"
+                            style="display: inline;"
+                        >
+                            {{ csrf_field() }} {{ method_field('DELETE') }}
+                            <button 
+                                class="btn btn-sm btn-danger"
+                                onclick="return confirm('¿Estás seguro de querer eliminar esta publicación?')"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

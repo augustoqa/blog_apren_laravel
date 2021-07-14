@@ -19,14 +19,6 @@ class PostsController extends Controller
         return view('admin.posts.index', \compact('posts'));
     }
 
-    // public function create()
-    // {
-    //     $categories = Category::all();
-    //     $tags = Tag::all();
-
-    //     return view('admin.posts.create', compact('categories', 'tags'));
-    // }
-
     public function store(Request $request)
     {
         $this->validate($request, ['title' => 'required']);
@@ -50,6 +42,17 @@ class PostsController extends Controller
 
         $post->syncTags($request->get('tags'));
 
-        return redirect()->route('admin.posts.edit', $post)->with('flash', 'Tu publicación ha sido creada');
+        return redirect()
+            ->route('admin.posts.edit', $post)
+            ->with('flash', 'La publicación ha sido creada');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('flash', 'La publicación ha sido eliminada');
     }
 }
