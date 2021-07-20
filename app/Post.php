@@ -49,10 +49,22 @@ class Post extends Model
             ->latest('published_at');
     }
 
-    public function setTitleAttribute($title)
+    public static function create(array $attributes = [])
     {
-        $this->attributes['title'] = $title;
-        $this->attributes['url'] = str_slug($title);
+        $post = static::query()->create($attributes);
+        $post->generateUrl();
+
+        return $post;
+    }
+
+    public function generateUrl()
+    {
+        $url = str_slug($this->title);
+
+        $this->url = $this->whereUrl($url)->exists()
+                        ? "{$url}-{$this->id}" 
+                        : $url;
+        $this->save();
     }
 
     public function setPublishedAtAttribute($published_at)
