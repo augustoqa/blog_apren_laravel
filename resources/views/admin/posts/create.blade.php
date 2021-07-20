@@ -12,11 +12,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         {{-- <label for="">Título de la publicación</label> --}}
-                        <input 
-                        type="text" 
-                        name="title" 
+                        <input
+                        type="text"
+                        name="title"
                         id="title"
-                        value="{{ old('title') }}" 
+                        value="{{ old('title') }}"
                         class="form-control @error('title') is-invalid @enderror"
                         placeholder="Ingrese aquí el título de la publicación">
 
@@ -33,3 +33,24 @@
         </div>
     </form>
 </div>
+
+<script>
+    function showModal() {
+        $('#exampleModal')
+            .modal('show')
+            .on('shown.bs.modal', function () {
+                $('#title').trigger('focus')
+            })
+    }
+
+    if (window.location.hash === '#create') {
+        showModal();
+        window.location.hash = '#';
+    }
+</script>
+
+@error('title')
+<script>
+    showModal()
+</script>
+@enderror

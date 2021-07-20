@@ -258,21 +258,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 4 -->
     <script src="{{ asset('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+    @unless(request()->is('admin/posts/*'))
+        @include('admin.posts.create')
+    @endunless
+
     @stack('scripts')
 
     <!-- AdminLTE App -->
     <script src="{{ asset('/adminlte/js/adminlte.min.js') }}"></script>
 
-    @include('admin.posts.create')
-
-    @error('title')
-    <script>
-        $('#exampleModal').modal('show')
-        $('#exampleModal').on('shown.bs.modal', function () {
-            $('#title').trigger('focus')
-        })
-    </script>
-    @enderror
 </body>
 
 </html>
