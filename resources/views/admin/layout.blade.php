@@ -154,6 +154,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
+
+                <li class="nav-item dropdown user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img src="/adminlte/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+                        <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <!-- User image -->
+                        <li class="user-header bg-primary">
+                            <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+                            <p>
+                                {{ auth()->user()->name }}
+                                <small>Desde {{ auth()->user()->created_at->format('d/M/Y') }}</small>
+                            </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <form method="post" action="{{ route('logout') }}">
+                                {{ csrf_field() }}
+                                <button class="btn btn-default btn-flat btn-block">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -179,16 +205,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-                    </div>
-                </div>
-
                 <!-- SidebarSearch Form -->
                 {{-- <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">

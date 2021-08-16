@@ -61,6 +61,7 @@ class Post extends Model
 
     public static function create(array $attributes = [])
     {
+        $attributes['user_id'] = auth()->id();
         $post = static::query()->create($attributes);
         $post->generateUrl();
 
