@@ -59,7 +59,6 @@
                         <a
                             href="{{ route('admin.users.show', $user) }}"
                             class="btn btn-sm btn-default"
-                            target="_blank"
                         >
                             <i class="fa fa-eye"></i>
                         </a>
