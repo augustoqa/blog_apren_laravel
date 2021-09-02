@@ -5,7 +5,7 @@
 	<div class="col-md-6">
 		<div class="card card-primary card-outline">
 			<div class="card-header">
-				<h3 class="box-title">Datos personales</h3>
+				<h3 class="card-title">Datos personales</h3>
 			</div>
 			<div class="card-body">
 				@if ($errors->any())
@@ -41,6 +41,30 @@
 					</div>
 
 					<button class="btn btn-primary btn-block">Actualizar usuario</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="card card-primary card-outline">
+			<div class="card-header">
+				<h3 class="card-title">Roles y permisos</h3>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
+					{{ csrf_field() }} {{ method_field('PUT') }}
+					@foreach ($roles as $id => $name)
+					<div class="checkbox">
+						<label for="">
+							<input name="roles[]" type="checkbox" value="{{ $name }}" 
+								{{ $user->roles->contains($id) ? 'checked' : '' }}>
+							{{ $name }}
+						</label>
+					</div>
+					@endforeach
+
+					<button class="btn btn-primary btn-block">Actualizar roles</button>
 				</form>
 			</div>
 		</div>
