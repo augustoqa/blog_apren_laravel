@@ -1,6 +1,7 @@
 <?php
 
-function setActiveRoute($name)
+function setActiveRoute($name, $cssClass = 'active')
 {
-    return request()->routeIs($name) ? 'active' : '';
+    return request()->routeIs($name) ? $cssClass : '';
 }
+
