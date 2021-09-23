@@ -29,13 +29,13 @@
 <div class="card">
     <div class="card-header">
         <h3 class="float-left">Listado de usuarios</h3>
-        <button
-            class="btn btn-primary float-right"
-            data-toggle="modal" data-target="#exampleModal"
+        <a
+            href="{{ route('admin.users.create') }}"
+            class="btn btn-primary float-right"  
         >
             <i class="fas fa-plus"></i>
             Crear usuario
-        </button>
+        </a>
     </div>
     <div class="card-body">
         <table id="users-table" class="table table-bordered table-striped">
