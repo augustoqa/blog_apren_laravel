@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\UserWasCreated;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -63,6 +64,7 @@ class UsersController extends Controller
         $user->givePermissionTo($request->permissions);
 
         // Enviar email
+        UserWasCreated::dispatch($user, $data['password']);
 
         // Regresar al usuario
         return redirect()->route('admin.users.index')->withFlash('El usuario ha sido creado');
