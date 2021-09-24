@@ -19,7 +19,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::allowed()->get();
 
         return view('admin.users.index', \compact('users'));
     }
@@ -32,6 +32,9 @@ class UsersController extends Controller
     public function create()
     {
         $user = new User;
+
+        $this->authorize('create', $user);
+
         $roles = Role::with('permissions')->get();
         $permissions = Permission::pluck('name', 'id');
 
@@ -46,6 +49,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', new User);
+
         // Validar formulario
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -78,6 +83,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -89,6 +96,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         $roles = Role::with('permissions')->get();
         $permissions = Permission::pluck('name', 'id');
 
@@ -104,6 +113,8 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        $this->authorize('update', $user);
+
         $user->update( $request->validated() );
 
         return back()->withFlash('Usuario actualizado');
