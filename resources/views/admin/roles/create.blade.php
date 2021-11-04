@@ -5,36 +5,35 @@
 		<div class="col-md-6">
 			<div class="card card-primary card-outline">
 				<div class="card-header">
-					<h3 class="card-title">Datos personales</h3>
+					<h3 class="card-title">Crear Role</h3>
 				</div>
 				<div class="card-body">
 					@include('partials.error-messages')
-					<form method="POST" action="{{ route('admin.users.store') }}">
+					<form method="POST" action="{{ route('admin.roles.store') }}">
 						{{ csrf_field() }}
 						<div class="form-group">
 							<label for="name">Nombre:</label>
 							<input type="text" name="name" value="{{ old('name') }}" class="form-control">
 						</div>					
 						<div class="form-group">
-							<label for="email">Email:</label>
-							<input type="text" name="email" value="{{ old('email') }}" class="form-control">
+							<label for="email">Guard:</label>
+							<select name="guard_name" class="form-control">
+								@foreach (config('auth.guards') as $guardName => $guard)
+								<option {{ old('guard_name') !== $guardName ?: 'selected' }} value="{{ $guardName }}">
+									{{ $guardName }}
+								</option>
+								@endforeach
+							</select>
 						</div>
 
 						<div class="d-flex">
-							<div class="px-5">
-								<label>Roles</label>
-								@include('admin.roles.checkboxes')
-							</div>
-
 							<div>
 								<label>Permisos</label>
-								@include('admin.permissions.checkboxes', ['model' => $user])
+								@include('admin.permissions.checkboxes', ['model' => $role])
 							</div>
 						</div>
 
-						<span class="text-muted">La contraseña será generada y enviada al nuevo usuario vía email</span>
-
-						<button class="btn btn-primary btn-block">Crear usuario</button>
+						<button class="btn btn-primary btn-block">Crear role</button>
 					</form>
 				</div>
 			</div>
