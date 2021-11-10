@@ -42,9 +42,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Identificador</th>
                     <th>Nombre</th>
-                    <th>Guard</th>
-                    <th>Roles</th>
+                    <th>Permisos</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +53,8 @@
                 <tr>
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
-                    <td>{{ $role->guard_name }}</td>
+                    <td>{{ $role->display_name }}</td>
+                    <td>{{ $role->permissions->pluck('name')->implode(', ') }}</td>
                     <td>
                         <a
                             href="{{ route('admin.roles.show', $role) }}"
