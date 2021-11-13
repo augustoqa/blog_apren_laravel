@@ -10,7 +10,7 @@
 <div class="form-group">
 	<label for="display_name">Nombre:</label>
 	<input type="text" name="display_name" value="{{ old('display_name', $role->display_name) }}" class="form-control">
-</div>					
+</div>
 
 <div class="d-flex">
 	<div>
