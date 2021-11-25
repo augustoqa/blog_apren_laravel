@@ -56,15 +56,10 @@
                     <td>{{ $role->display_name }}</td>
                     <td>{{ $role->permissions->pluck('name')->implode(', ') }}</td>
                     <td>
-                        <a
-                            href="{{ route('admin.roles.show', $role) }}"
-                            class="btn btn-sm btn-default"
-                        >
-                            <i class="fa fa-eye"></i>
-                        </a>
                         <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-sm btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
+                        @if ($role->id !== 1)
                         <form
                             method="POST"
                             action="{{ route('admin.roles.destroy', $role) }}"
@@ -78,11 +73,12 @@
                                 <i class="fa fa-times"></i>
                             </button>
                         </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
             </tbody>
-
+            <h1>Hello</h1>
         </table>
     </div>
 </div>
