@@ -29,6 +29,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="float-left">Listado de Roles</h3>
+        @can('create', $roles->first())
         <a
             href="{{ route('admin.roles.create') }}"
             class="btn btn-primary float-right"  
@@ -36,6 +37,7 @@
             <i class="fas fa-plus"></i>
             Crear Role
         </a>
+        @endcan
     </div>
     <div class="card-body">
         <table id="roles-table" class="table table-bordered table-striped">
@@ -56,9 +58,12 @@
                     <td>{{ $role->display_name }}</td>
                     <td>{{ $role->permissions->pluck('name')->implode(', ') }}</td>
                     <td>
+                        @can('update', $role)
                         <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-sm btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
+                        @endcan
+                        @can('delete', $role)
                         @if ($role->id !== 1)
                         <form
                             method="POST"
@@ -74,6 +79,7 @@
                             </button>
                         </form>
                         @endif
+                        @endcan
                     </td>
                 </tr>
                 @endforeach

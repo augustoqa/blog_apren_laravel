@@ -34,5 +34,6 @@ class PermissionsController extends Controller
 
         return redirect()
             ->route('admin.permissions.edit', $permission)
-            ->withFlash('El permiso ha sido actualizado');    }
+            ->withFlash('El permiso ha sido actualizado');    
+    }
 }

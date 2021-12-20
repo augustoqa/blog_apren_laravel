@@ -47,9 +47,11 @@
                     <td>{{ $permission->name }}</td>
                     <td>{{ $permission->display_name }}</td>
                     <td>
+                        @can('update', $permission)
                         <a href="{{ route('admin.permissions.edit', $permission) }}" class="btn btn-sm btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
+                        @endcan
                     </td>
                 </tr>
                 @endforeach

@@ -31,7 +31,7 @@
 						@endif
 					</ul>
 
-					<a href="#" class="btn btn-primary btn-block"><b>Editar</b></a>
+					<a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-block"><b>Editar</b></a>
 				</div>
 				<!-- /.card-body -->
 			</div>

@@ -29,6 +29,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="float-left">Listado de usuarios</h3>
+        @can('create', $users->first())
         <a
             href="{{ route('admin.users.create') }}"
             class="btn btn-primary float-right"  
@@ -36,6 +37,7 @@
             <i class="fas fa-plus"></i>
             Crear usuario
         </a>
+        @endcan
     </div>
     <div class="card-body">
         <table id="users-table" class="table table-bordered table-striped">
@@ -56,15 +58,22 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->getRoleNames()->implode(', ') }}</td>
                     <td>
+                        @can('view', $user)
                         <a
                             href="{{ route('admin.users.show', $user) }}"
                             class="btn btn-sm btn-default"
                         >
                             <i class="fa fa-eye"></i>
                         </a>
+                        @endcan
+
+                        @can('update', $user)
                         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
+                        @endcan
+
+                        @can('delete', $user)
                         <form
                             method="POST"
                             action="{{ route('admin.users.destroy', $user) }}"
@@ -78,6 +87,7 @@
                                 <i class="fa fa-times"></i>
                             </button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
                 @endforeach
