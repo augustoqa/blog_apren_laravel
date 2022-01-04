@@ -49,7 +49,8 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        $query->whereNotNull('published_at')
+        $query->with(['category', 'tags', 'owner', 'photos'])
+            ->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now())
             ->latest('published_at');
     }
@@ -58,7 +59,7 @@ class Post extends Model
     {
         if ( auth()->user()->can('view', $this) ) {
             return $query;
-        } 
+        }
 
         return $query->where('user_id', auth()->id());
     }
@@ -92,7 +93,7 @@ class Post extends Model
         $url = str_slug($this->title);
 
         $this->url = $this->whereUrl($url)->exists()
-                        ? "{$url}-{$this->id}" 
+                        ? "{$url}-{$this->id}"
                         : $url;
         $this->save();
     }
