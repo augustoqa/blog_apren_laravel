@@ -22,6 +22,15 @@ window.Vue = require('vue');
 
 Vue.use(Router)
 
+let router = new Router({
+    routes: [
+        { path: '/', component: {template: '<div>Este es el home</div>'} },
+        { path: '/nosotros', component: {template: '<div>Este es el nosotros</div>'} },
+        { path: '/archivo', component: {template: '<div>Este es el archivo</div>'} },
+        { path: '/contacto', component: {template: '<div>Este es contacto</div>'} },
+    ]
+})
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
@@ -32,4 +41,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });
