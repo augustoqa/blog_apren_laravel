@@ -28,7 +28,8 @@ let router = new Router({
         { path: '/nosotros', component: {template: '<div>Este es el nosotros</div>'} },
         { path: '/archivo', component: {template: '<div>Este es el archivo</div>'} },
         { path: '/contacto', component: {template: '<div>Este es contacto</div>'} },
-    ]
+    ],
+    linkExactActiveClass: 'active',
 })
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
