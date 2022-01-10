@@ -4,8 +4,7 @@
         <!--            <h3>{{ $title }}</h3>-->
         <!--        @endif-->
 
-        <!--        @forelse($posts as $post)-->
-        <article class="post">
+        <article v-for="post in posts" class="post">
 
             <!--                @include( $post->viewType('home') )-->
 
@@ -13,12 +12,12 @@
 
                 <!--                    @include('posts.header')-->
 
-                <!--                    <h1>{{ $post->title }}</h1>-->
+                <h1 v-text="post.title"></h1>
 
-                <br>
                 <div class="divider"></div>
-                <br>
-                <!--                    <p>{{ $post->excerpt }}</p>-->
+
+                <p v-html="post.excerpt"></p>
+
                 <footer class="container-flex space-between">
                     <div class="read-more">
                         <!--                            <a href="{{ route('posts.show', $post) }}" class="text-uppercase c-green">Leer más</a>-->
@@ -31,7 +30,7 @@
         </article>
         <!--        @empty-->
 
-        <article class="post">
+        <article class="post" v-if="! posts.length">
             <div class="content-post">
                 <h1>No hay publicaciones todavía.</h1>
             </div>
@@ -39,4 +38,23 @@
         <!--        @endforelse-->
     </section><!-- fin del div.posts.container -->
 </template>
+
+<script>
+export default {
+    data () {
+        return {
+            posts: [],
+        }
+    },
+    mounted() {
+        axios.get('/api/posts')
+            .then(response => {
+                this.posts = response.data.data;
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}
+</script>
 
