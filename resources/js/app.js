@@ -7,6 +7,11 @@
 require('./bootstrap');
 import Router from "vue-router";
 
+import Home from './views/Home'
+import About from './views/About'
+import Archive from './views/Archive'
+import Contact from './views/Contact'
+
 window.Vue = require('vue');
 
 /**
@@ -24,15 +29,16 @@ Vue.use(Router)
 
 let router = new Router({
     routes: [
-        { path: '/', component: {template: '<div>Este es el home</div>'} },
-        { path: '/nosotros', component: {template: '<div>Este es el nosotros</div>'} },
-        { path: '/archivo', component: {template: '<div>Este es el archivo</div>'} },
-        { path: '/contacto', component: {template: '<div>Este es contacto</div>'} },
+        { path: '/', component: Home },
+        { path: '/nosotros', component: About },
+        { path: '/archivo', component: Archive },
+        { path: '/contacto', component: Contact },
     ],
     linkExactActiveClass: 'active',
 })
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('home', require('./views/Home.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
