@@ -11,6 +11,21 @@
             <div class="content-post">
 
                 <!--                    @include('posts.header')-->
+                <header class="container-flex space-between">
+                    <div class="date">
+                        <span class="c-gray-1">
+                            {{ post.published_date }} / {{ post.owner.name }}
+                        </span>
+                                    </div>
+                                    <div class="post-category">
+                        <span class="category text-capitalize">
+                            <a href="#">{{ post.category.name }}</a>
+<!--                            <a href="{{ route('categories.show', $post->category) }}">-->
+<!--                                {{ $post->category->name }}-->
+<!--                            </a>-->
+                        </span>
+                    </div>
+                </header>
 
                 <h1 v-text="post.title"></h1>
 
@@ -20,11 +35,15 @@
 
                 <footer class="container-flex space-between">
                     <div class="read-more">
-                        <!--                            <a href="{{ route('posts.show', $post) }}" class="text-uppercase c-green">Leer más</a>-->
+                        <a href="#" class="text-uppercase c-green">Leer más</a>
                     </div>
 
                     <!--                        @include('posts.tags')-->
-
+                    <div class="tags container-flex">
+                        <span v-for="tag in post.tags" class="tag c-gray-1 text-capitalize">
+                            <a href="#">#{{ tag.name }}</a>
+                        </span>
+                    </div>
                 </footer>
             </div>
         </article>
