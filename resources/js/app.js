@@ -5,12 +5,6 @@
  */
 
 require('./bootstrap');
-import Router from "vue-router";
-
-import Home from './views/Home'
-import About from './views/About'
-import Archive from './views/Archive'
-import Contact from './views/Contact'
 
 window.Vue = require('vue');
 
@@ -27,8 +21,8 @@ window.Vue = require('vue');
 
 import router from './routes';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('home', require('./views/Home.vue').default);
+Vue.component('post-header', require('./components/PostHeader.vue').default);
+Vue.component('nav-bar', require('./components/NavBar').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
