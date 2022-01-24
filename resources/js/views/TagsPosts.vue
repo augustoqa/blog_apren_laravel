@@ -27,9 +27,7 @@
                     <!--                        @include('posts.tags')-->
                     <div class="tags container-flex">
                         <span v-for="tag in post.tags" class="tag c-gray-1 text-capitalize">
-                            <router-link :to="{name: 'tags_posts', params: {tag: tag.url}}">
-                                #{{ tag.name }}
-                            </router-link>
+                            <a href="#">#{{ tag.name }}</a>
                         </span>
                     </div>
                 </footer>
@@ -54,7 +52,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('/api/posts')
+        axios.get(`/api/etiquetas/${this.$route.params.tag}`)
             .then(response => {
                 this.posts = response.data.data;
             })
@@ -64,4 +62,3 @@ export default {
     }
 }
 </script>
-

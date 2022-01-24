@@ -7,6 +7,7 @@ import Contact from "./views/Contact";
 import NotFound from "./views/404";
 import PostsShow from "./views/PostsShow"
 import CategoryPosts from "./views/CategoryPosts"
+import TagsPosts from "./views/TagsPosts"
 
 Vue.use(Router)
 
@@ -18,6 +19,7 @@ export default new Router({
         { path: '/contacto', name: 'contact', component: Contact },
         { path: '/blog/:url', name: 'posts_show', component: PostsShow },
         { path: '/categorias/:category', name: 'category_posts', component: CategoryPosts },
+        { path: '/tags/:tag', name: 'tags_posts', component: TagsPosts },
         { path: '*', component: NotFound },
     ],
     linkExactActiveClass: 'active',
