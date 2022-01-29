@@ -11,12 +11,7 @@
 
             <footer class="container-flex space-between">
                 <div class="read-more">
-                    <router-link
-                        :to="{name: 'posts_show', params: {url: post.url}}"
-                        class="text-uppercase c-green"
-                    >
-                        Leer más
-                    </router-link>
+                    <post-link :post="post" class="text-uppercase c-green">Leer más</post-link>
                 </div>
 
                 <!--                        @include('posts.tags')-->
@@ -33,8 +28,10 @@
 </template>
 
 <script>
+import PostLink from "./PostLink";
 export default {
     name: "PostListItem",
+    components: {PostLink},
     props: ['post'],
 }
 </script>

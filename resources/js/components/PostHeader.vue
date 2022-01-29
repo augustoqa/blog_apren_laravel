@@ -8,9 +8,7 @@
             </div>
             <div class="post-category">
                 <span class="category text-capitalize">
-                    <router-link :to="{name: 'category_posts', params: {category: post.category.url}}">
-                        {{ post.category.name }}
-                    </router-link>
+                    <category-link :category="post.category"></category-link>
                 </span>
             </div>
         </header>
@@ -22,7 +20,9 @@
 </template>
 
 <script>
+import CategoryLink from "./CategoryLink";
 export default {
+    components: {CategoryLink},
     props: ['post'],
 }
 </script>
