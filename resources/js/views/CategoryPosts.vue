@@ -6,6 +6,7 @@
 import PostsList from "../components/PostsList";
 
 export default {
+    props: ['category'],
     components: {
         PostsList,
     },
@@ -15,7 +16,7 @@ export default {
         }
     },
     mounted() {
-        axios.get(`/api/categorias/${this.$route.params.category}`)
+        axios.get(`/api/categorias/${this.category}`)
             .then(response => {
                 this.posts = response.data.data;
             })

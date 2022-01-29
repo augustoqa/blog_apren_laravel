@@ -6,6 +6,7 @@
 import PostsList from "../components/PostsList";
 
 export default {
+    props: ['tag'],
     components: {
         PostsList,
     },
@@ -15,7 +16,7 @@ export default {
         }
     },
     mounted() {
-        axios.get(`/api/etiquetas/${this.$route.params.tag}`)
+        axios.get(`/api/etiquetas/${this.tag}`)
             .then(response => {
                 this.posts = response.data.data;
             })

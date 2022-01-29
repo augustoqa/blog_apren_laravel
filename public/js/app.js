@@ -2044,6 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['category'],
   components: {
     PostsList: _components_PostsList__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2055,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/categorias/".concat(this.$route.params.category)).then(function (response) {
+    axios.get("/api/categorias/".concat(this.category)).then(function (response) {
       _this.posts = response.data.data;
     })["catch"](function (err) {
       console.log(err);
@@ -2137,6 +2138,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url'],
   data: function data() {
     return {
       post: {
@@ -2148,7 +2150,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/blog/".concat(this.$route.params.url)).then(function (res) {
+    axios.get("/api/blog/".concat(this.url)).then(function (res) {
       _this.post = res.data;
     })["catch"](function (err) {
       console.log(err.response.data);
@@ -2174,6 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['tag'],
   components: {
     PostsList: _components_PostsList__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2185,7 +2188,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/etiquetas/".concat(this.$route.params.tag)).then(function (response) {
+    axios.get("/api/etiquetas/".concat(this.tag)).then(function (response) {
       _this.posts = response.data.data;
     })["catch"](function (err) {
       console.log(err);
@@ -19009,15 +19012,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/blog/:url',
     name: 'posts_show',
-    component: _views_PostsShow__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _views_PostsShow__WEBPACK_IMPORTED_MODULE_7__["default"],
+    props: true
   }, {
     path: '/categorias/:category',
     name: 'category_posts',
-    component: _views_CategoryPosts__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _views_CategoryPosts__WEBPACK_IMPORTED_MODULE_8__["default"],
+    props: true
   }, {
     path: '/tags/:tag',
     name: 'tags_posts',
-    component: _views_TagsPosts__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _views_TagsPosts__WEBPACK_IMPORTED_MODULE_9__["default"],
+    props: true
   }, {
     path: '*',
     component: _views_404__WEBPACK_IMPORTED_MODULE_6__["default"]
