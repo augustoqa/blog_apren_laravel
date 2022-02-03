@@ -15,17 +15,20 @@
             </footer>
             <div class="comments">
                 <div class="divider"></div>
-                <div id="disqus_thread"></div>
-
-<!--                @include('partials.disqus-script')-->
+                <disqus-comments />
             </div><!-- .comments -->
         </div>
     </section>
 </template>
 
 <script>
+import DisqusComments from '../components/DisqusComments'
+
 export default {
     props: ['url'],
+    components: {
+        DisqusComments,
+    },
     data() {
         return {
             post: {
