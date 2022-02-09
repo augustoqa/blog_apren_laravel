@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 import router from './routes';
 
+// require('vue2-animate/dist/vue2-animate.min.css')
+
 Vue.component('post-header', require('./components/PostHeader.vue').default);
 Vue.component('nav-bar', require('./components/NavBar').default);
 

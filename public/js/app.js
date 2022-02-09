@@ -4227,9 +4227,67 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "posts container" }, [
-      _c("article", { staticClass: "post" }, [
-        _c("div", { staticClass: "content-post" }),
+    return _c("section", { staticClass: "pages container" }, [
+      _c("div", { staticClass: "page page-contact" }, [
+        _c("h1", { staticClass: "text-capitalize" }, [_vm._v("contact us")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Nam in maximus arcu, ac aliquam tellus. Donec vestibulum ipsum nunc, at placerat ante posuere non. Integer at dui a lacus suscipit elementum id non massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc eu neque eros. Ut eu quam justo."
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "divider-2",
+          staticStyle: { margin: "25px 0" },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-contact" }, [
+          _c("form", { attrs: { action: "#" } }, [
+            _c(
+              "div",
+              { staticClass: "input-container container-flex space-between" },
+              [
+                _c("input", {
+                  staticClass: "input-name",
+                  attrs: { type: "text", placeholder: "Your Name" },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "input-email",
+                  attrs: { type: "text", placeholder: "Email" },
+                }),
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-container" }, [
+              _c("input", {
+                staticClass: "input-subject",
+                attrs: { type: "text", placeholder: "Subject" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-container" }, [
+              _c("textarea", {
+                attrs: {
+                  name: "",
+                  id: "",
+                  cols: "30",
+                  rows: "10",
+                  placeholder: "Your Message",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "send-message" }, [
+              _c(
+                "a",
+                { staticClass: "text-uppercase c-green", attrs: { href: "#" } },
+                [_vm._v("send message")]
+              ),
+            ]),
+          ]),
+        ]),
       ]),
     ])
   },
@@ -19717,6 +19775,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+ // require('vue2-animate/dist/vue2-animate.min.css')
 
 Vue.component('post-header', __webpack_require__(/*! ./components/PostHeader.vue */ "./resources/js/components/PostHeader.vue")["default"]);
 Vue.component('nav-bar', __webpack_require__(/*! ./components/NavBar */ "./resources/js/components/NavBar.vue")["default"]);
