@@ -1,28 +1,17 @@
 <template>
-    <posts-list :posts="posts"></posts-list>
+    <paginator
+        :url="`/api/etiquetas/${this.tag}`"
+        component-name="posts-list"
+    />
 </template>
 
 <script>
-import PostsList from "../components/PostsList";
+import Paginator from "../components/Paginator";
 
 export default {
-    props: ['tag'],
     components: {
-        PostsList,
+        Paginator,
     },
-    data () {
-        return {
-            posts: [],
-        }
-    },
-    mounted() {
-        axios.get(`/api/etiquetas/${this.tag}`)
-            .then(response => {
-                this.posts = response.data.data;
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    props: ['tag'],
 }
 </script>

@@ -5,12 +5,12 @@
         <!--        @endif-->
 
         <post-list-item
-            v-for="post in posts"
+            v-for="post in items"
             :post="post"
             :key="post.id" />
         <!--        @empty-->
 
-        <article class="post" v-if="! posts.length">
+        <article class="post" v-if="! items.length">
             <div class="content-post">
                 <h1>No hay publicaciones todavía.</h1>
             </div>
@@ -24,6 +24,6 @@ import PostListItem from "../components/PostListItem";
 
 export default {
     components: {PostListItem},
-    props: ['posts']
+    props: ['items']
 }
 </script>

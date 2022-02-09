@@ -1,28 +1,17 @@
 <template>
-    <posts-list :posts="posts"></posts-list>
+    <paginator
+        :url="`/api/categorias/${this.category}`"
+        component-name="posts-list"
+    />
 </template>
 
 <script>
-import PostsList from "../components/PostsList";
+import Paginator from "../components/Paginator";
 
 export default {
     props: ['category'],
     components: {
-        PostsList,
+        Paginator,
     },
-    data () {
-        return {
-            posts: [],
-        }
-    },
-    mounted() {
-        axios.get(`/api/categorias/${this.category}`)
-            .then(response => {
-                this.posts = response.data.data;
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
 }
 </script>
