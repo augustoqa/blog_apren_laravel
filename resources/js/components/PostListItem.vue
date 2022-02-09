@@ -14,13 +14,10 @@
                     <post-link :post="post" class="text-uppercase c-green">Leer más</post-link>
                 </div>
 
-                <!--                        @include('posts.tags')-->
                 <div class="tags container-flex">
-                        <span v-for="tag in post.tags" class="tag c-gray-1 text-capitalize">
-                            <router-link :to="{name: 'tags_posts', params: {tag: tag.url}}">
-                                #{{ tag.name }}
-                            </router-link>
-                        </span>
+                    <span v-for="tag in post.tags" class="tag c-gray-1 text-capitalize">
+                        <tag-link :tag="tag" />
+                    </span>
                 </div>
             </footer>
         </div>
@@ -29,9 +26,14 @@
 
 <script>
 import PostLink from "./PostLink";
+import TagLink from "./TagLink";
+
 export default {
     name: "PostListItem",
-    components: {PostLink},
+    components: {
+        PostLink,
+        TagLink,
+    },
     props: ['post'],
 }
 </script>

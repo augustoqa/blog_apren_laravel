@@ -10,8 +10,12 @@
             <div class="image-w-text" v-html="post.body"></div>
 
             <footer class="container-flex space-between">
-<!--                @include('partials.social-links', ['description' => $post->title])-->
-<!--                @include('posts.tags')-->
+                <social-links :description="post.title" />
+                <div class="tags container-flex">
+                    <span v-for="tag in post.tags" class="tag c-gray-1 text-capitalize">
+                        <tag-link :tag="tag" />
+                    </span>
+                </div>
             </footer>
             <div class="comments">
                 <div class="divider"></div>
@@ -23,11 +27,15 @@
 
 <script>
 import DisqusComments from '../components/DisqusComments'
+import SocialLinks from '../components/SocialLinks'
+import TagLink from '../components/TagLink'
 
 export default {
     props: ['url'],
     components: {
         DisqusComments,
+        SocialLinks,
+        TagLink,
     },
     data() {
         return {
