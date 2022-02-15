@@ -21224,6 +21224,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: _views_404__WEBPACK_IMPORTED_MODULE_6__["default"]
   }],
   linkExactActiveClass: 'active',
+  mode: 'history',
   scrollBehavior: function scrollBehavior() {
     return {
       x: 0,
